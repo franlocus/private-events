@@ -1,1 +1,10 @@
 <h1>Private Events</h1>
+<ol>
+  <% @events.each do | event | %>
+    <li>
+      <%= event.title %>
+      <strong> MC:</strong><%= event.creator.id %>
+      <small><%= link_to "See event", event_path(event) %></small>
+    </li>
+  <% end %>
+</ol>

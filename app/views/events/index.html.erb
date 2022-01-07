@@ -3,7 +3,7 @@
   <% @events.each do | event | %>
     <li>
       <%= event.title %>
-      <strong> MC:</strong><%= event.creator.id %>
+      <strong> Creador:</strong><%= event.creator.attributes %> | <%= event.creator.id %>
       <small><%= link_to "See event", event_path(event) %></small>
     </li>
   <% end %>

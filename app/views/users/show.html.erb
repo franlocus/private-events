@@ -1,6 +1,18 @@
+<% past_events, future_events = [], [] %>
+<% @user.attended_events.each do | event | %>
+  <% event.event_date < DateTime.current ? past_events << event.title : future_events << event.title %>
+<% end %>
+
 <h1>Users#show</h1>
-<ol>
-  <% @user.attended_events.each do | event | %>
-    <li><%= event.title %></li>
-  <% end %>
-</ol>
+<h3>Past Events</h3>
+  <ol>
+    <% past_events.each do | event_title | %>
+    <li><%= event_title %></li>  
+    <% end %>
+  </ol>
+<h3>Future Events</h3>
+  <ol>
+    <% future_events.each do | event_title | %>
+    <li><%= event_title %></li>  
+    <% end %>
+  </ol>

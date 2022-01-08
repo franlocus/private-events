@@ -9,8 +9,12 @@
     <li><small><%= attendee.username %></small>
   <% end %>
 </ol>
-<%= form_with model: @invitation, url: "/invitations" do | form | %>
-  <%= form.hidden_field :event_id, value: @event.id %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-  <%= form.submit "Join the event" %>
+<% if user_signed_in? %>
+  <%= form_with model: @invitation, url: "/invitations" do | form | %>
+    <%= form.hidden_field :event_id, value: @event.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.submit "Join the event" %>
+  <% end %>
+<% else %>
+  <button disabled="disabled">You must sign in to join the event</button>
 <% end %>

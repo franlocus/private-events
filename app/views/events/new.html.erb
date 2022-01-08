@@ -1,4 +1,7 @@
 <%= form_with model: @event do | form | %>
+  <% @event.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   <div>
     <%= form.label :title %>
     <%= form.text_field :title %>

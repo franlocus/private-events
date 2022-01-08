@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :invitations
   has_many :attended_events, through: :invitations, source: :event
+  has_many :events
 end

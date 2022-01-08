@@ -1,6 +1,7 @@
 <h1>Private Events</h1>
 <ol>
-  <% @events.each do | event | %>
+  <h2>Past Events</h2>
+  <% @past_events.each do | event | %>
     <li>
       <%= event.title %> |
       <small><%= event.event_date %></small>
@@ -9,3 +10,15 @@
     </li>
   <% end %>
 </ol>
+<ol>
+  <h2>Upcoming Events</h2>
+  <% @upcoming_events.each do | event | %>
+    <li>
+      <%= event.title %> |
+      <small><%= event.event_date %></small>
+      <strong> Creator: </strong><%= link_to event.creator.username.capitalize, user_path(event.creator.id) %>(<%= event.creator.id %>)
+      -> <small><%= link_to "See event", event_path(event) %></small>
+    </li>
+  <% end %>
+</ol>
+

@@ -4,7 +4,7 @@
   <li><strong> Location</strong><%= @event.location %>
 </ul>
 <%= form_with model: @invitation, url: "/invitations" do | form | %>
-  <%= form.hidden_field :attended_event_id, value: @event.id %>
-  <%= form.hidden_field :attendee_id, value: current_user.id %>
-  <%= form.submit %>
+  <%= form.hidden_field :event_id, value: @event.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.submit "Join the event" %>
 <% end %>

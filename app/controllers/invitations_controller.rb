@@ -3,7 +3,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(invitation_params)
 
     if @invitation.save
-      redirect_to root_path, notice: 'invitation created successfully'
+      redirect_to root_path, notice: 'Yay! You joined the event.'
     else
       render :new, alert: 'Error, the invitation was not created'       
     end
@@ -12,6 +12,6 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:attended_event_id, :attendee_id)
+    params.require(:invitation).permit(:user_id, :event_id)
   end
 end

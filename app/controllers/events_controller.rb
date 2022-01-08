@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @invitation = invitation.new
+    @invitation = Invitation.new
   end
 
   def new

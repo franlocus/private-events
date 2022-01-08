@@ -3,6 +3,12 @@
   <li><strong> Date</strong><%= @event.event_date %>
   <li><strong> Location</strong><%= @event.location %>
 </ul>
+<h5>Guest's list:</h5>
+<ol>
+  <% @event.attendees.each do | attendee | %>
+    <li><small><%= attendee.username %></small>
+  <% end %>
+</ol>
 <%= form_with model: @invitation, url: "/invitations" do | form | %>
   <%= form.hidden_field :event_id, value: @event.id %>
   <%= form.hidden_field :user_id, value: current_user.id %>

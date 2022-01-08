@@ -3,8 +3,8 @@
   <% @events.each do | event | %>
     <li>
       <%= event.title %>
-      <strong> Creador:</strong><%= event.creator.username %> | <%= event.creator.id %>
-      <small><%= link_to "See event", event_path(event) %></small>
+      <strong> Creator: </strong><%= link_to event.creator.username.capitalize, user_path(event.creator.id) %>(<%= event.creator.id %>)
+      -> <small><%= link_to "See event", event_path(event) %></small>
     </li>
   <% end %>
 </ol>

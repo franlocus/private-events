@@ -10,6 +10,12 @@
   <% end %>
 </ol>
 <% if user_signed_in? %>
+  <% if current_user == @event.creator %>
+    <%= link_to 'Edit this event', edit_event_path(@event) %>
+    <%= link_to 'Delete this event', event_path(@event),
+                                    method: :delete,
+                                    data: { confirm: 'Are you sure you want to delete the event?' }  %>
+  <% end %>
   <%= form_with model: @invitation, url: "/invitations" do | form | %>
     <%= form.hidden_field :event_id, value: @event.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>

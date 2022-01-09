@@ -16,10 +16,16 @@
                                     method: :delete,
                                     data: { confirm: 'Are you sure you want to delete the event?' }  %>
   <% end %>
-  <%= form_with model: @invitation, url: "/invitations" do | form | %>
-    <%= form.hidden_field :event_id, value: @event.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "Join the event" %>
+  <% if current_user.attended_events.include?(@event) %>
+    <%= link_to 'Exit the event', invitation_path(@event.invitations.find { |invitation| invitation.event_id == @event.id }.id),
+                                    method: :delete,
+                                    data: { confirm: 'Are you sure you want to quit the event?' }  %>
+  <% else %>
+    <%= form_with model: @invitation, url: "/invitations" do | form | %>
+      <%= form.hidden_field :event_id, value: @event.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "Join the event" %>
+    <% end %>
   <% end %>
 <% else %>
   <button disabled="disabled">You must sign in to join the event</button>
